@@ -1,0 +1,8 @@
+version: '3.8'
+
+services:
+  ros2:
+    build: .
+    volumes:
+      - ./ros2_ws:/root/ros2_ws
+    command: /bin/bash -c "source /opt/ros/humble/setup.bash && /bin/bash"
