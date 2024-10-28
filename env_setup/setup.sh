@@ -12,6 +12,9 @@ sudo sh -c 'echo "deb http://packages.ros.org/ros2/ubuntu $(lsb_release -cs) mai
 # Update and install ROS 2 Jammy
 sudo apt update && sudo apt install -y ros-humble-desktop
 
+#install gazebo
+sudo apt-get install ros-humble-ros-gz
+
 # Source the ROS 2 setup script
 echo "source /opt/ros/humble/setup.bash" >> ~/.bashrc
 source ~/.bashrc
