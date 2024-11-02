@@ -1,33 +1,169 @@
-<world name="default">
-  <include>
-    <uri>model://ground_plane</uri>
-  </include>
-  <include>
-    <uri>model://sun</uri>
-  </include>
-  <model name="warehouse_walls">
-    <static>true</static>
-    <link name="link">
-      <collision name="collision">
-        <geometry>
-          <box>
-            <size>20 20 1</size>
-          </box>
-        </geometry>
-      </collision>
-      <visual name="visual">
-        <geometry>
-          <box>
-            <size>20 20 1</size>
-          </box>
-        </geometry>
-        <material>
-          <script>
-            <uri>file://media/materials/scripts/gazebo.material</uri>
-            <name>Gazebo/White</name>
-          </script>
-        </material>
-      </visual>
-    </link>
-  </model>
-</world>
+<sdf version='1.7'>
+  <world name='default'>
+    <light name='sun' type='directional'>
+      <cast_shadows>1</cast_shadows>
+      <pose>0 0 10 0 -0 0</pose>
+      <diffuse>0.8 0.8 0.8 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <attenuation>
+        <range>1000</range>
+        <constant>0.9</constant>
+        <linear>0.01</linear>
+        <quadratic>0.001</quadratic>
+      </attenuation>
+      <direction>-0.5 0.1 -0.9</direction>
+      <spot>
+        <inner_angle>0</inner_angle>
+        <outer_angle>0</outer_angle>
+        <falloff>0</falloff>
+      </spot>
+    </light>
+    <model name='ground_plane'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <surface>
+            <friction>
+              <ode>
+                <mu>100</mu>
+                <mu2>50</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='visual'>
+          <cast_shadows>0</cast_shadows>
+          <geometry>
+            <plane>
+              <normal>0 0 1</normal>
+              <size>100 100</size>
+            </plane>
+          </geometry>
+          <material>
+            <script>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+              <name>Gazebo/Grey</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='wall_1'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>70 1 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>70 1 5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <pose>0 25 2.5 0 0 0</pose>
+    </model>
+    <model name='wall_2'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>70 1 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>70 1 5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <pose>0 -25 2.5 0 0 0</pose>
+    </model>
+    <model name='wall_3'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>1 20 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>1 20 5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <pose>35 -15 2.5 0 0 0</pose>
+    </model>
+    <model name='wall_4'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>1 50 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>1 50 5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <pose>-35 0 2.5 0 0 0</pose>
+    </model>
+    <model name='wall_5'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>1 20 5</size>
+            </box>
+          </geometry>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <box>
+              <size>1 20 5</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+      <pose>35 15 2.5 0 0 0</pose>
+    </model>
+  </world>
+</sdf>

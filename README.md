@@ -46,6 +46,10 @@ This script will install ROS 2 Jammy and set up the workspace in `~/ros2_ws`.
 
 - `ros2_ws`: The ROS 2 workspace where all packages and code for the project are located.
 
+## Running the simulation
+To start gazebo and the simulation run the command `ros2 launch warehouse_simulation warehouse_simulation.launch.py world_file:=warehouse_full.world` 
+Adding people to the world can be done by `ros2 launch warehouse_simulation warehouse_generator.py`
+
 ## Contributing
 
 Please follow the standard GitHub flow for contributing:
