@@ -1,8 +1,8 @@
 version: '3.8'
 
 services:
-  ros2:
+  ros1:
     build: .
     volumes:
-      - ./ros2_ws:/root/ros2_ws
-    command: /bin/bash -c "source /opt/ros/humble/setup.bash && /bin/bash"
+      - ./catkin_ws:/root/catkin_ws
+    command: /bin/bash -c "source /opt/ros/noetic/setup.bash && /bin/bash"

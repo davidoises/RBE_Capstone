@@ -7,6 +7,8 @@ This repository contains the code and resources for the UrbanFireRobot project, 
 
 ## Setup Instructions
 
+More information of jackal intergration see https://docs.clearpathrobotics.com/docs/ros1noetic/robots/outdoor_robots/jackal/tutorials_jackal/
+
 ### Using Docker
 
 To set up the ROS 2 Jammy environment using Docker, follow these steps:
