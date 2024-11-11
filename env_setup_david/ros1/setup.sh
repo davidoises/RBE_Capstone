@@ -15,7 +15,9 @@ source ~/.bashrc
 
 # Create a workspace
 # mkdir -p ~/ros2_ws/src
-# cd ~/ros2_ws
+cd ~/ros2_ws
+
+rosdep install --from-paths src --ignore-src --rosdistro noetic -y
 
 # colcon build
 # chmod +x UrbanFireRobot/ros2_ws/src/warehouse_simulation/scripts/warehouse_generator.py
