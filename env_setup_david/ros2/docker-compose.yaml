@@ -6,7 +6,7 @@ volumes:
       driver: local
       driver_opts:
         type: none
-        device: ../ros2_ws
+        device: ../../ros2_ws
         o: bind
 
 services:
