@@ -1,5 +1,22 @@
+<?xml version="1.0" ?>
 <sdf version='1.7'>
   <world name='default'>
+   <plugin
+      filename="libignition-gazebo-physics-system.so"
+      name="ignition::gazebo::systems::Physics">
+    </plugin>
+    <plugin
+      filename="libignition-gazebo-user-commands-system.so"
+      name="ignition::gazebo::systems::UserCommands">
+    </plugin>
+    <plugin
+      filename="libignition-gazebo-scene-broadcaster-system.so"
+      name="ignition::gazebo::systems::SceneBroadcaster">
+    </plugin>
+    <plugin
+      filename="libignition-gazebo-particle-emitter-system.so"
+      name="ignition::gazebo::systems::ParticleEmitter">
+    </plugin>
     <light name='sun' type='directional'>
       <cast_shadows>1</cast_shadows>
       <pose>0 0 10 0 -0 0</pose>
@@ -18,6 +35,13 @@
         <falloff>0</falloff>
       </spot>
     </light>
+     <include>
+      <uri>model://fog_generator</uri>
+    </include>
+
+        <include>
+      <uri>model://fire_generator</uri>
+    </include>
     <model name='ground_plane'>
       <static>1</static>
       <link name='link'>

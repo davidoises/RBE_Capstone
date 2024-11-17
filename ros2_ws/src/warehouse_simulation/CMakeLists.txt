@@ -3,7 +3,7 @@ project(warehouse_simulation)
 
 find_package(catkin REQUIRED COMPONENTS
   rospy
-  gazebo_ros
+  ros_ign_gazebo
 )
 
 catkin_package()
