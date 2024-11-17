@@ -16,6 +16,8 @@ sudo apt install -y python3-rosdep python3-rosinstall python3-rosinstall-generat
 #https://docs.clearpathrobotics.com/docs/ros1noetic/robots/outdoor_robots/jackal/tutorials_jackal/
 sudo apt-get install -y ros-noetic-jackal-simulator ros-noetic-jackal-desktop ros-noetic-jackal-navigation
 # Source the ROS 1 setup script
+
+sudo apt-get install -y ros-noetic-ros-ign-gazebo
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 source ~/.bashrc
 
@@ -33,4 +35,8 @@ export IGN_GAZEBO_RESOURCE_PATH=$IGN_GAZEBO_RESOURCE_PATH:~/UrbanFireRobot/ros2_
 export IGN_CONFIG_PATH=/usr/share/ignition
 export IGN_GAZEBO_SYSTEM_PLUGIN_PATH=/usr/lib/x86_64-linux-gnu/ign-gazebo-3/system_plugins
 export IGN_GAZEBO_RESOURCE_PATH=$IGN_GAZEBO_RESOURCE_PATH:$HOME/.ignition/fuel/fuel.ignitionrobotics.org/openrobotics/models
+
+
+
+export LIBGL_ALWAYS_SOFTWARE=true
 

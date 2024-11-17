@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import rospy
-from gazebo_msgs.srv import SpawnModel, SpawnModelRequest, DeleteModel
+from ros_ign_gazebo.srv import SpawnEntity
 from std_msgs.msg import Float32
 import os
 from rospkg import RosPack
@@ -12,10 +12,9 @@ import logging
 class WarehouseGenerator:
     def __init__(self):
         rospy.init_node('warehouse_generator')
-        self.spawn_client = rospy.ServiceProxy('/gazebo/spawn_sdf_model', SpawnModel)
-        self.delete_client = rospy.ServiceProxy('/gazebo/delete_model', DeleteModel)
+        self.spawn_client = rospy.ServiceProxy('/spawn_entity', SpawnEntity)
 
-        rospy.wait_for_service('/gazebo/spawn_sdf_model', timeout=15.0)
+        rospy.wait_for_service('/spawn_entity', timeout=15.0)
         logging.basicConfig(level=logging.DEBUG)
         
     def add_model_to_scene(self, model_pkg, x, y, z, model_name=None):
@@ -36,14 +35,18 @@ class WarehouseGenerator:
         self.spawn_model(model_name, model_xml, x, y, z)
 
     def spawn_model(self, model_name, model_xml, x, y, z):
-        request = SpawnModelRequest()
-        request.model_name = model_name
-        request.model_xml = model_xml
+        request = SpawnEntity.Request()
+        request.name = model_name
+        request.xml = model_xml
         request.robot_namespace = ''
         request.initial_pose = Pose()
         request.initial_pose.position.x = x
         request.initial_pose.position.y = y
         request.initial_pose.position.z = z
+        request.initial_pose.orientation.w = 1.0
+        request.initial_pose.orientation.x = 0.0
+        request.initial_pose.orientation.y = 0.0
+        request.initial_pose.orientation.z = 0.0
         try:
             response = self.spawn_client.call(request)
             if response.success:
