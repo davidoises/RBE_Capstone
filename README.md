@@ -57,7 +57,7 @@ To indicate the path to the built models also do:
 `export GAZEBO_MODEL_PATH=~/ros2_ws/src/warehouse_simulation/models`
 
 To add the camera sensors to the model also do the following:
-`export JACKAL_URDF_EXTRAS=~/ros2_ws/src/warehouse_simulation/description/camera.xa`
+`export JACKAL_URDF_EXTRAS=~/ros2_ws/src/warehouse_simulation/description/camera.xacro`
 
 To start gazebo and the simulation run the command `roslaunch warehouse_simulation warehouse_simulation.launch world_file:=warehouse_full.world` 
 
