@@ -1,33 +1,32 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 
-import rclpy
-from rclpy.node import Node
-from gazebo_msgs.srv import SpawnEntity, DeleteEntity
+import rospy
+from ros_ign_gazebo.srv import SpawnEntity
 from std_msgs.msg import Float32
 import os
-from ament_index_python.packages import get_package_share_directory
+from rospkg import RosPack
 import random
+from geometry_msgs.msg import Pose
+import logging
 
-class WarehouseGenerator(Node):
+class WarehouseGenerator:
     def __init__(self):
-        super().__init__('warehouse_generator')
-        self.spawn_client = self.create_client(SpawnEntity, '/spawn_entity')
-        self.delete_client = self.create_client(DeleteEntity, '/delete_entity')
+        rospy.init_node('warehouse_generator')
+        self.spawn_client = rospy.ServiceProxy('/spawn_entity', SpawnEntity)
 
-        while not self.spawn_client.wait_for_service(timeout_sec=15.0):
-            self.get_logger().info('Waiting for spawn_entity service...')
-            if self.spawn_client.service_is_ready():
-                break
-            else:
-                self.get_logger().error('spawn_entity service not available, exiting...')
-                rclpy.shutdown()
-                exit(1)
+        rospy.wait_for_service('/spawn_entity', timeout=15.0)
+        logging.basicConfig(level=logging.DEBUG)
         
     def add_model_to_scene(self, model_pkg, x, y, z, model_name=None):
+        rospack = RosPack()
         model_path = os.path.join(
-            get_package_share_directory('warehouse_simulation'),
+            rospack.get_path('warehouse_simulation'),
             'models', model_pkg, 'model.sdf'
         )
+
+        if not os.path.exists(model_path):
+            logging.error(f"Model path does not exist: {model_path}")
+            return
 
         with open(model_path, 'r') as model_file:
             model_xml = model_file.read()
@@ -40,29 +39,43 @@ class WarehouseGenerator(Node):
         request.name = model_name
         request.xml = model_xml
         request.robot_namespace = ''
+        request.initial_pose = Pose()
         request.initial_pose.position.x = x
         request.initial_pose.position.y = y
         request.initial_pose.position.z = z
-        self.spawn_client.call_async(request)
+        request.initial_pose.orientation.w = 1.0
+        request.initial_pose.orientation.x = 0.0
+        request.initial_pose.orientation.y = 0.0
+        request.initial_pose.orientation.z = 0.0
+        try:
+            response = self.spawn_client.call(request)
+            if response.success:
+                logging.info(f"Successfully spawned model: {model_name}")
+            else:
+                logging.error(f"Failed to spawn model: {model_name}, {response.status_message}")
+        except rospy.ServiceException as e:
+            logging.error(f"Service call failed: {e}")
 
     def spawn_random_people(self, num_people, x_range, y_range, z):
         for i in range(num_people):
             x = random.uniform(*x_range)
             y = random.uniform(*y_range)
             self.add_model_to_scene('person_standing', x, y, z, model_name=f'person_{i}')
+    
+    def spawn_fire(self, x, y, z):
+        self.add_model_to_scene('fog_generator', x, y, z)
         
 
-def main(args=None):
-    rclpy.init(args=args)
+def main():
     warehouse_generator = WarehouseGenerator()
 
     # Example: Spawn a shelf
     # warehouse_generator.add_model_to_scene('aws_robomaker_warehouse_ShelfF_01',0.0, 0.0, 0.0)
     # spawn in people
-    warehouse_generator.spawn_random_people(3, (-30, 30), (-20, 20), 0.0)
-    rclpy.spin(warehouse_generator)
-    warehouse_generator.destroy_node()
-    rclpy.shutdown()
+    # warehouse_generator.spawn_random_people(3, (-30, 30), (-20, 20), 0.0)
+    # spawn fire
+    warehouse_generator.spawn_fire(0.0, 0.0, 0.0)
+    rospy.spin()
 
 if __name__ == '__main__':
     main()

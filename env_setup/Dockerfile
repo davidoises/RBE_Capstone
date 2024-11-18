@@ -1,5 +1,5 @@
-# Use the official ROS 2 Jazzy base image
-FROM osrf/ros:jazzy-desktop
+# Use the official ROS 1 Noetic base image
+FROM osrf/ros:noetic-desktop-full
 
 # Set the working directory
 WORKDIR /root
@@ -10,8 +10,8 @@ COPY setup.sh /root/setup.sh
 # Make the setup script executable
 RUN chmod +x /root/setup.sh
 
-# Source the ROS 2 setup script
-RUN /bin/bash -c "source /opt/ros/jazzy/setup.bash"
+# Source the ROS 1 setup script
+RUN /bin/bash -c "source /opt/ros/noetic/setup.bash"
 
 # Set the entrypoint to bash
 ENTRYPOINT ["/bin/bash"]
