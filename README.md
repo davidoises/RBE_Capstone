@@ -56,7 +56,10 @@ After building (catkin_make) you also need to source the workspace setup.bash:
 To indicate the path to the built models also do:
 `export GAZEBO_MODEL_PATH=~/ros2_ws/src/warehouse_simulation/models`
 
-To start gazebo and the simulation run the command `roslaunch warehouse_simulation warehouse_simulation.launch.py world_file:=warehouse_full.world` 
+To add the camera sensors to the model also do the following:
+`export JACKAL_URDF_EXTRAS=~/ros2_ws/src/warehouse_simulation/description/camera.xa`
+
+To start gazebo and the simulation run the command `roslaunch warehouse_simulation warehouse_simulation.launch world_file:=warehouse_full.world` 
 
 // Adding people to the world can be done by `ros2 launch warehouse_simulation warehouse_generator.py`
 
