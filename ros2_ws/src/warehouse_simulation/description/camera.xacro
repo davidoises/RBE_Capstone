@@ -18,6 +18,7 @@
   <gazebo reference="front_realsense">
     <turnGravityOff>true</turnGravityOff>
     <sensor type="camera" name="front_realsense_depth">
+      <visualize>true</visualize>
       <update_rate>30</update_rate>
       <camera>
         <!-- 75x65 degree FOV for the depth sensor -->

@@ -4,7 +4,7 @@
 sudo apt update
 
 sudo apt install nano -y
-sudo apt install python3-pip
+sudo apt install python3-pip -y
 
 #https://docs.clearpathrobotics.com/docs/ros1noetic/robots/outdoor_robots/jackal/tutorials_jackal/
 sudo apt-get install -y ros-noetic-jackal-simulator ros-noetic-jackal-desktop ros-noetic-jackal-navigation
