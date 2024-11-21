@@ -19,3 +19,6 @@ sudo apt install -y libgtsam-dev libgtsam-unstable-dev
 
 # Add git
 sudo apt install -y git
+
+# Install LIO-SAM package
+git submodule update --init

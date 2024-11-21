@@ -29,6 +29,9 @@ source ~/.bashrc
 # colcon build
 # source ~/ros2_ws/install/setup.bash
 
+# colcon
 # export IGN_GAZEBO_RESOURCE_PATH=$IGN_GAZEBO_RESOURCE_PATH:~/ros2_ws/install/warehouse_simulation/share/warehouse_simulation/models
+# catkin
+# export IGN_GAZEBO_RESOURCE_PATH=$IGN_GAZEBO_RESOURCE_PATH:~/ros2_ws/src/warehouse_simulation/models
 
 # export JACKAL_URDF_EXTRAS=~/ros2_ws/src/warehouse_simulation/description/camera.xacro
