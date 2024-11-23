@@ -1,0 +1,3 @@
+[submodule "ros2_ws/src/LIO-SAM"]
+	path = ros2_ws/src/LIO-SAM
+	url = https://github.com/davidoises/LIO-SAM-Noetic.git
