@@ -1,8 +1,6 @@
 [submodule "ros2_ws/src/LIO-SAM"]
 	path = ros2_ws/src/LIO-SAM
 	url = https://github.com/davidoises/LIO-SAM-Noetic.git
-
-[submodule "ros2_ws/src/ign_ros"]
-	path = ros2_ws/src/ign_ros
+[submodule "ros2_ws/src/ros_gz"]
+	path = ros2_ws/src/ros_gz
 	url = https://github.com/gazebosim/ros_gz.git
-	branch = noetic
