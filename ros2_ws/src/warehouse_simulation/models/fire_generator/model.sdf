@@ -6,13 +6,13 @@
     <link name="fire_link">
       <particle_emitter name="emitter" type="box">
         <emitting>true</emitting>
-        <size>0.5 0.5 0</size>
+        <size>0.5 0.5 0.5</size>
         <particle_size>0.1 0.1 0.1</particle_size>
         <lifetime>5</lifetime>
         <min_velocity>0.1</min_velocity>
         <max_velocity>0.2</max_velocity>
         <scale_rate>0.5</scale_rate>
-        <rate>5</rate>
+        <rate>50</rate>
         <material>
           <diffuse>0.7 0.7 0.7</diffuse>
           <specular>1.0 1.0 1.0</specular>
@@ -25,6 +25,9 @@
         <color_range_image>materials/textures/firecolors.png</color_range_image>
       </particle_emitter>
     </link>
-    <plugin name="fire_growth_plugin" filename="libfire_growth_plugin.so"/>
+        <plugin
+      filename="libignition-gazebo-particle-emitter-system.so"
+      name="ignition::gazebo::systems::ParticleEmitter">
+    </plugin>
   </model>
 </sdf>

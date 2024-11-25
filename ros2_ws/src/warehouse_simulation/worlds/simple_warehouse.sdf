@@ -26,7 +26,16 @@
     <physics name="1ms" type="ode">
       <max_step_size>0.001</max_step_size>
       <real_time_factor>1.0</real_time_factor>
-    </physics>
+      </physics>
+
+    <plugin filename="libignition-gazebo-imu-system.so"
+        name="ignition::gazebo::systems::Imu">
+    </plugin>
+    <plugin
+      filename="libignition-gazebo-sensors-system.so"
+      name="ignition::gazebo::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
     <plugin
       filename="libignition-gazebo-physics-system.so"
       name="ignition::gazebo::systems::Physics">
@@ -39,10 +48,17 @@
       filename="libignition-gazebo-scene-broadcaster-system.so"
       name="ignition::gazebo::systems::SceneBroadcaster">
     </plugin>
-    <plugin
-      filename="libignition-gazebo-particle-emitter-system.so"
-      name="ignition::gazebo::systems::ParticleEmitter">
-    </plugin>
+    <atmosphere type="adiabatic">
+  <temperature>300</temperature>
+  <!--
+    This is a more exaggerated temperature gradient, which produces a
+    temperature range of ~11.5 kelvin for objects in the thermal camera
+    view that don't have a user-specified temperature.
+    Typical temperature gradient is -0.0065 K/m which produces a
+    temperature range of 0.75 kelvin.
+  -->
+  <temperature_gradient>0.1</temperature_gradient>
+</atmosphere>
 
     <light type="directional" name="sun">
       <cast_shadows>true</cast_shadows>
@@ -84,14 +100,35 @@
       </link>
     </model>
 
+
+    <include>
+      <pose>32 0 0 0 0 1.570796</pose>
+      <name>victim_1</name>
+      <uri>https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Rescue Randy</uri>
+    </include>
+
+
+    <include>
+      <pose>-30 0 0 0 0 1.570796</pose>
+      <name>victim_2</name>
+      <uri>https://fuel.ignitionrobotics.org/1.0/OpenRobotics/models/Rescue Randy</uri>
+    </include>
+
     <include>
       <uri>model://fog_generator</uri>
+      <pose>0 0 0 0 0 0</pose>
     </include>
 
-        <include>
+    <include>
       <uri>model://fire_generator</uri>
+      <pose>0 0 0 0 0 0</pose>
     </include>
 
+    <include>
+      <uri>model://my_robot</uri>
+      <pose>32 0 1 0 0 0</pose>
+    </include>
+    
     <model name='wall_1'>
       <static>1</static>
       <link name='link'>

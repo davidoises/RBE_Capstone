@@ -26,6 +26,7 @@ sudo apt-get install -y ignition-edifice
 
 sudo apt-get install -y ros-noetic-ros-ign-gazebo
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+echo "export IGNITION_VERSION=edifice" >> ~/.bashrc
 source ~/.bashrc
 
 # Create a workspace
@@ -37,8 +38,9 @@ rosdep install --from-paths src --ignore-src --rosdistro noetic -y
 source ~/UrbanFireRobot/ros2_ws/install/setup.bash
 
 chmod +x UrbanFireRobot/ros2_ws/src/warehouse_simulation/scripts/warehouse_generator.py
+
 # export GAZEBO_MODEL_PATH=$GAZEBO_MODEL_PATH:~/UrbanFireRobot/ros2_ws/install/warehouse_simulation/share/warehouse_simulation/models
-export IGN_GAZEBO_RESOURCE_PATH=$IGN_GAZEBO_RESOURCE_PATH:~/UrbanFireRobot/ros2_ws/install/warehouse_simulation/share/warehouse_simulation/models
+export IGN_GAZEBO_RESOURCE_PATH=$IGN_GAZEBO_RESOURCE_PATH:~/UrbanFireRobot/ros2_ws/install/share/warehouse_simulation/models
 # export IGN_CONFIG_PATH=/usr/share/ignition
 # export IGN_GAZEBO_SYSTEM_PLUGIN_PATH=/usr/lib/x86_64-linux-gnu/ign-gazebo-3/system_plugins
 # export IGN_GAZEBO_RESOURCE_PATH=$IGN_GAZEBO_RESOURCE_PATH:$HOME/.ignition/fuel/fuel.ignitionrobotics.org/openrobotics/models
