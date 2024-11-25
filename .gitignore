@@ -1,6 +1,9 @@
 */build/*
 */install/*
 */log/*
+*/logs/*
 */devel/*
 */.catkin_workspace
 ros2_ws/src/CMakeLists.txt
+*/devel/*
+*/.catkin_tools/*
