@@ -27,6 +27,7 @@ sudo apt-get install -y ignition-edifice
 sudo apt-get install -y ros-noetic-ros-ign-gazebo
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 echo "export IGNITION_VERSION=edifice" >> ~/.bashrc
+echo "export IGN_GAZEBO_RESOURCE_PATH=$IGN_GAZEBO_RESOURCE_PATH:~/UrbanFireRobot/ros2_ws/install/share/warehouse_simulation/models" >> ~/.bashrc
 source ~/.bashrc
 
 # Create a workspace
