@@ -14,5 +14,28 @@
     <arg name="ign_args" value="-r -v 3 $(arg world)"/>
   </include>
 
+  <node
+    pkg="ros_ign_bridge"
+    type="parameter_bridge"
+    name="$(anon ros_ign_bridge)"
+    output="screen"
+    args="/lidar@sensor_msgs/LaserScan@ignition.msgs.LaserScan /lidar/points@sensor_msgs/PointCloud2@ignition.msgs.PointCloudPacked">
+  </node>
+
+  <node
+    pkg="ros_ign_bridge"
+    type="parameter_bridge"
+    name="$(anon ros_ign_bridge_imu)"
+    output="screen"
+    args="/imu@sensor_msgs/Imu@ignition.msgs.IMU">
+  </node>
+
+  <node
+    pkg="ros_ign_bridge"
+    type="parameter_bridge"
+    name="$(anon ros_ign_bridge_thermal_camera)"
+    output="screen"
+    args="/thermal_camera/image@sensor_msgs/Image@ignition.msgs.Image">
+  </node>
 
 </launch>
