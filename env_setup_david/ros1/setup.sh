@@ -9,6 +9,7 @@ sudo apt install python3-pip -y
 sudo apt install python3-colcon-common-extensions -y
 sudo apt install -y python3-rosinstall-generator
 sudo apt install -y python3-vcstool
+sudo apt-get -y install python3-catkin-tools
 
 
 #https://docs.clearpathrobotics.com/docs/ros1noetic/robots/outdoor_robots/jackal/tutorials_jackal/
@@ -28,7 +29,7 @@ sudo apt-get install -y ros-noetic-ros-ign-gazebo
 # # Source the ROS 2 setup script
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
 echo "export IGNITION_VERSION=edifice" >> ~/.bashrc
-echo "export IGN_GAZEBO_RESOURCE_PATH=$IGN_GAZEBO_RESOURCE_PATH:~/ros2_ws/install/share/warehouse_simulation/models" >> ~/.bashrc
+echo "export IGN_GAZEBO_RESOURCE_PATH=$IGN_GAZEBO_RESOURCE_PATH:~/UrbanFireRobot/ros2_ws/install/share/warehouse_simulation/models" >> ~/.bashrc
 source ~/.bashrc
 
 # Create a workspace
