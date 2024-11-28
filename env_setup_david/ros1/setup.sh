@@ -4,24 +4,31 @@
 sudo apt update -y
 
 sudo apt install nano -y
+sudo apt install git -y
 sudo apt install python3-pip -y
 sudo apt install python3-colcon-common-extensions -y
 sudo apt install -y python3-rosinstall-generator
 sudo apt install -y python3-vcstool
 
-sudo apt-get install -y ignition-edifice
-sudo apt-get install -y ros-noetic-ros-ign-gazebo
-
-# sudo apt-get install -y ros-noetic-ros-ign-gazebo
-# sudo apt install -y ros-noetic-ros-ign-bridge
-# sudo apt-get install ignition-citadel -y
 
 #https://docs.clearpathrobotics.com/docs/ros1noetic/robots/outdoor_robots/jackal/tutorials_jackal/
 sudo apt-get install -y ros-noetic-jackal-simulator ros-noetic-jackal-desktop ros-noetic-jackal-navigation
 pip3 install ultralytics
 
+sudo apt-get update
+sudo apt-get install lsb-release wget gnupg -y
+
+sudo sh -c 'echo "deb http://packages.osrfoundation.org/gazebo/ubuntu-stable `lsb_release -cs` main" > /etc/apt/sources.list.d/gazebo-stable.list'
+wget http://packages.osrfoundation.org/gazebo.key -O - | sudo apt-key add -
+sudo apt-get update -y
+
+sudo apt-get install -y ignition-edifice
+sudo apt-get install -y ros-noetic-ros-ign-gazebo
+
 # # Source the ROS 2 setup script
 echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc
+echo "export IGNITION_VERSION=edifice" >> ~/.bashrc
+echo "export IGN_GAZEBO_RESOURCE_PATH=$IGN_GAZEBO_RESOURCE_PATH:~/ros2_ws/install/share/warehouse_simulation/models" >> ~/.bashrc
 source ~/.bashrc
 
 # Create a workspace
